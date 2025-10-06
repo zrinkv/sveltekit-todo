@@ -34,6 +34,7 @@
 		"vite": "^7.1.9"
 	},
 	"dependencies": {
+		"@carbon/charts-svelte": "^1.22.18",
 		"@picocss/pico": "^2.1.1"
 	}
 }

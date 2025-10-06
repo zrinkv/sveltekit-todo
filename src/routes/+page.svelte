@@ -1,10 +1,74 @@
 <script lang='ts'>
+  import { BarChartSimple, DonutChart, PieChart } from '@carbon/charts-svelte'
+  import '@carbon/charts-svelte/styles.css'
+  
+  let options =  {
+    theme: 'g100',   
+    resizable: true,
+    legend: {
+      position: 'bottom',
+      truncation: {
+        type: 'none'
+      }
+    },
+    donut: {
+      center: {
+        label: 'Browsers'
+      }
+    },
+    data: {
+      loading: true
+    },
+    height: '320px',
+    width: '320px'
+  };
+
+  let data = [
+    {
+      group: 'Done',
+      value: 20000
+    },
+    {
+      group: 'In progress',
+      value: 65000
+    },
+    {
+      group: 'Skipped',
+      value: 75000
+    } 
+  ];
+
   let openDialog = false;
 
   function openCloseModal() {
     openDialog = !openDialog;        
   };
+
 </script>
+
+<BarChartSimple
+	data={[
+		{ group: 'Qty', value: 65000 },
+		{ group: 'More', value: 29123 },
+		{ group: 'Sold', value: 35213 },
+		{ group: 'Restocking', value: 51213 },
+		{ group: 'Misc', value: 16932 }
+	]}
+	options={{
+		theme: 'g90',
+		title: 'Simple bar (discrete)',
+		height: '400px',
+		axes: {
+			left: { mapsTo: 'value' },
+			bottom: { mapsTo: 'group', scaleType: 'labels' }
+		}
+	}} />
+
+  <PieChart {data} options={{
+    theme: 'g90',
+    title: 'Pie',
+    resizable: true,
+    height: '400px'}}  />
 
 <svelte:head>
     <title>Dobrodošli!</title>
@@ -25,52 +89,64 @@
            <table>
              <thead>
                <tr>
-                 <th scope="col">Planet</th>
-                 <th scope="col">Diameter (km)</th>
-                 <th scope="col">Distance to Sun (AU)</th>
-                 <th scope="col">Orbit (days)</th>
+                 <th>+</th>
+                 <th scope="col">Task</th>
+                 <th scope="col">Type</th>
+                 <th scope="col">Notes</th>
+                 <th scope="col">Date</th>
+                 <th scope="col">Status</th>
                </tr>
              </thead>
              <tbody>
                <tr>
+                 <td><input type="checkbox"/></td>
                  <th scope="row">Mercury</th>
                  <td>4,880</td>
                  <td>0.39</td>
                  <td>88</td>
+                 <td>Done</td>
                </tr>
                <tr>
+                 <td><input type="checkbox"/></td>
                  <th scope="row">Venus</th>
                  <td>12,104</td>
                  <td>0.72</td>
                  <td>225</td>
+                 <td>In progress</td>
                </tr>
                <tr>
+                 <td><input type="checkbox"/></td>
                  <th scope="row">Earth</th>
                  <td>12,742</td>
                  <td>1.00</td>
                  <td>365</td>
+                 <td>Done</td>
                </tr>
                <tr>
+                 <td><input type="checkbox"/></td>
                  <th scope="row">Mars</th>
                  <td>6,779</td>
                  <td>1.52</td>
                  <td>687</td>
+                 <td>In progress</td>
                </tr>
              </tbody>
              <tfoot>
                <tr>
+                 <th scope="row"></th>
                  <th scope="row">Average</th>
                  <td>9,126</td>
                  <td>0.91</td>
                  <td>341</td>
+                 <th scope="row"></th>             
                </tr>
              </tfoot>
            </table>
           </div>
            
-          <div style="flex-grow: 1; width: 300px;">
+          <div style="flex-grow: 1; width: 300px; height: auto;">
              <h4>Chart</h4>
-           
+             <DonutChart {data} {options} />
           </div>              
         </div>  
       </div>      
@@ -141,8 +217,8 @@
 
 <dialog open = {openDialog}>
   <article>
-    <header>
-      <button aria-label="Close" rel="prev" on:click={openCloseModal}></button>
+    <header>      
+      <a href="/" rel="prev" aria-label="Close" on:click={openCloseModal}></a> 
       <p>
         <strong>🗓️ Thank You for Registering!</strong>
       </p>
