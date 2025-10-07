@@ -43,6 +43,10 @@
     openDialog = !openDialog;        
   };
 
+  function addNewTask() {
+    openDialog = !openDialog;        
+  };
+
 </script>
 
 <svelte:head>
@@ -56,7 +60,7 @@
     <!-- svelte-ignore a11y_no_redundant_roles -->
     <summary role="" class="outline secondary"><b>Open tasks</b></summary>
     <hr/> 
-      <button class="outline" on:click={openCloseModal}><img src='../src/lib/assets/add_notes.svg' alt="Edit">&nbsp;Add new task</button>
+      <button class="outline" onclick={openCloseModal}><img src='../src/lib/assets/add_notes.svg' alt="Edit">&nbsp;Add new task</button>
       <div class="grid"> 
        <div style="display: flex; flex-direction: row; flex-wrap: wrap">
           <div class="overflow-auto" style="flex-grow: 3;">
@@ -74,7 +78,7 @@
              </thead>
              <tbody>
                <tr>
-                 <td><a href="/" on:click={openCloseModal}><img src={edit_icon} alt="Edit"></a></td>
+                 <td><a href="/" onclick={openCloseModal}><img src={edit_icon} alt="Edit"></a></td>
                  <th scope="row">Mercury</th>
                  <td>4,880</td>
                  <td>0.39</td>
@@ -82,7 +86,7 @@
                  <td>Done</td>
                </tr>
                <tr>
-                 <td><a href="/" on:click={openCloseModal}><img src={edit_icon} alt="Edit"></a></td>
+                 <td><a href="/" onclick={openCloseModal}><img src={edit_icon} alt="Edit"></a></td>
                  <th scope="row">Venus</th>
                  <td>12,104</td>
                  <td>0.72</td>
@@ -90,7 +94,7 @@
                  <td>In progress</td>
                </tr>
                <tr>
-                 <td><a href="/" on:click={openCloseModal}><img src={edit_icon} alt="Edit"></a></td>
+                 <td><a href="/" onclick={openCloseModal}><img src={edit_icon} alt="Edit"></a></td>
                  <th scope="row">Earth</th>
                  <td>12,742</td>
                  <td>1.00</td>
@@ -98,7 +102,7 @@
                  <td>Done</td>
                </tr>
                <tr>
-                 <td><a href="/" on:click={openCloseModal}><img src={edit_icon} alt="Edit"></a></td>
+                 <td><a href="/" onclick={openCloseModal}><img src={edit_icon} alt="Edit"></a></td>
                  <th scope="row">Mars</th>
                  <td>6,779</td>
                  <td>1.52</td>
@@ -192,7 +196,7 @@
 <dialog open = {openDialog}>
   <article>
     <header>      
-      <a href="/" rel="prev" aria-label="Close" on:click={openCloseModal}></a> 
+      <a href="/" rel="prev" aria-label="Close" onclick={openCloseModal}></a> 
       <p>
         <strong>🗓️ Add new task</strong>
       </p>
@@ -220,7 +224,7 @@
           <textarea           
             rows="4"
             name="type"
-            placeholder="Type"
+            placeholder="Additional notes..."
             autocomplete="given-name"
           ></textarea>
         </label>
@@ -229,6 +233,7 @@
       <input
         type="submit"
         value="Add new task"
+        onclick="{addNewTask}"
       />
     </form>
   </article>
