@@ -8,6 +8,7 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
+		appDir: 'app', // Required as the default is _app
 		adapter: adapter({
 			pages: 'build',
             assets: 'build',
